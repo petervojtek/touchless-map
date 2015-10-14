@@ -57,18 +57,18 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
     var lastZoomChange = 0
     var lastMoveChange = 0
-    var x = 0
-    var y = 0
-    var z = 0
+    var gx = 0
+    var gy = 0
+    var gz = 0
 
     isZoomTime = function(){
       return(Date.now() - lastZoomChange > 500)
     }
 
     inMovePosition = function(){
-      var absX = Math.abs(x)
-      var absY = Math.abs(y)
-      return (z < 12.8 && z > 6.0 && ( (absX > 3.0 && absX < 6.0) || (absY > 3.0 && absY < 6.0)  ))
+      var absgx = Math.abs(gx)
+      var absgy = Math.abs(gy)
+      return (gz < 12.8 && gz > 6.0 && ( (absgx > 3.0 && absgx < 6.0) || (absgy > 3.0 && absgy < 6.0)  ))
     }
 
     isMoveTime = function(){
@@ -76,19 +76,19 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     } 
 
     function onSuccess(a) {
-      x = a.x
-      y = a.y
-      z = a.z
+      gx = a.x
+      gy = a.y
+      gz = a.z
       $scope.$apply(function(){
         try{
             if( inZoomPosition() && isZoomTime() ){
-              if(z > 12.8 && y > 0){
+              if(gz > 12.8 && gy > 0){
                 lastZoomChange = Date.now()
                 leafletData.getMap().then(function(map) {
                   map.zoomIn()
                 })
                 
-              } else if(z < 6.0 && y < 0){
+              } else if(gz < 6.0 && gy < 0){
                 lastZoomChange = Date.now()
                 leafletData.getMap().then(function(map) {
                   map.zoomOut()
@@ -100,8 +100,8 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
               lastMoveChange = Date.now()
               leafletData.getMap().then(function(map) {
                   try{
-                    var xOffset = -20 * x
-                    var yOffset = 20 * y
+                    var xOffset = -20 * gx
+                    var yOffset = 20 * gy
 
                     map.panBy(new L.Point(xOffset, yOffset), {animate: true})
                   } catch(e){alert(e)}
