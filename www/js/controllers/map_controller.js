@@ -1,25 +1,27 @@
 touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 
   function ($scope, leafletData) {  
-    $scope.map = {
-          defaults: {
-            tileLayer: 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
-            maxZoom: 18,
-            zoomControlPosition: 'bottomleft',
-          },
-          markers : {},
-          events: {
-            map: {
-              enable: ['context'],
-              logic: 'emit'
-            }
-          }
-    };
 
-    $scope.map.center  = {
-          lat : 48.1518,
-          lng : 17.1577,
-          zoom : 17
-    };
+    angular.extend($scope, {
+        center: {
+          lat:  48.67587,
+          lng: 19.05112,
+          zoom: 8
+        },
+        layers: {
+          baselayers: {
+            osm: {
+              name: 'OpenStreetMap',
+              type: 'xyz',
+              url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            },
+            freemapHiking: {
+              name: 'freemap.sk (Hiking)',
+              url: 'http://{s}.freemap.sk/T/{z}/{x}/{y}.jpeg',
+              type: 'xyz'
+            }
+          },
+        }
+    });
 
     inZoomPosition = function(){
       return(x > -1.0 && x < 1.0 && y > -2.5 && y < 2.5)
