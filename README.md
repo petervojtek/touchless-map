@@ -5,7 +5,7 @@ Use case: move and zoom map on your smartphone while wearing gloves.
 
 ## How to Install
 
-Install the app to your Android device from Google Play Store.
+Install the app to your Android device from [Google Play Store](https://play.google.com/store/apps/details?id=com.ionicframework.myapp418130).
 
 ## Usage
 
