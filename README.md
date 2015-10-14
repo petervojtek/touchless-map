@@ -52,7 +52,7 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * cordova-plugin-geolocation
 * https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
 
-Feel free to propose new features or adjustments to the existing user interface via [Issues](https://github.com/petervojtek/touchless-map/issues).
+Feel free to propose new features or adjustments to the existing user interface via [Issues](https://github.com/petervojtek/touchless-map/issues). If you have some code adjustments to share, use pull request.
 
 ## License
 
