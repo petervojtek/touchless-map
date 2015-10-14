@@ -158,9 +158,22 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
         alert('acceleration error '+e);
     };
 
-    var options = { frequency: 60 }; 
+
+///////////////////////
+
+    var onShake = function () {
+        leafletData.getMap().then(function(map) {
+          map.setView(marker.getLatLng())
+          map.setZoom(12)
+        });
+    };
+
+//////////////////////////
 
     document.addEventListener("deviceready", function() {
-      var watchID = navigator.accelerometer.watchAcceleration(onAccelerationUpdated, onAccelerationError, options);
+      try{
+        navigator.accelerometer.watchAcceleration(onAccelerationUpdated, onAccelerationError, { frequency: 60 });
+        shake.startWatch(onShake, 40); // https://github.com/leecrossley/cordova-plugin-shake
+      } catch(e){alert(e)}
     }, false)
   }])
