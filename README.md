@@ -5,9 +5,9 @@ Use case: move and zoom map on your smartphone while wearing gloves.
 
 ## How to Install
 
-Install it on Your Android device from Google Play Store.
+Install the app to your Android device from Google Play Store.
 
-## How to use it
+## Usage
 
 When smartphone is in vertical (upright) position, touchless mode is disabled.
 Touchless mode is enabled when smartphone is in horizontal position.
