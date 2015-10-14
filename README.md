@@ -57,6 +57,7 @@ If you have some code adjustments to share, use pull request.
 ## Credits
 
 * Šaňo
+* icon by [flaticon](http://www.flaticon.com/)
 
 ## License
 
