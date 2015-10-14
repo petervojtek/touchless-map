@@ -26,7 +26,7 @@ Move the smartphone towards yourself and back to zoom in one level.
 
 ### Zoom Out
 
-Move the smartphone away from you and back to starting position to zoom out.
+Move the smartphone away from you (towards ground) and back to starting position to zoom out.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-out.gif"></img>
 
