@@ -22,13 +22,13 @@ Tilt your smartphone to move map in X and Y axis.
 
 Move the smartphone towards you and return back to starting position.
 
-<img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoomin.gif"></img>
+<img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-in.gif"></img>
 
 ### Zoom Out
 
 Move the smartphone away from you and return back to starting position.
 
-<img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoomout.gif"></img>
+<img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-out.gif"></img>
 
 ### Return to Your Position
 
@@ -44,5 +44,10 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * cordova-plugin-shake
 * cordova-plugin-geolocation
 * https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
+
+## License
+
+MIT
+
 
 
