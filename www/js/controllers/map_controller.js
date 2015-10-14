@@ -1,4 +1,4 @@
-streetlightApp.controller('mapCtrl', ['$scope', 'leafletData', 
+touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 
   function ($scope, leafletData) {  
     $scope.map = {
           defaults: {

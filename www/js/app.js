@@ -1,4 +1,4 @@
-streetlightApp = angular.module('streetlightApp', ['ionic', 'leaflet-directive'])
+touchlessApp = angular.module('touchlessApp', ['ionic', 'leaflet-directive'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

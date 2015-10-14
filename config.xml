@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.myapp418130" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Accelerometer Map</name>
+  <name>Touchless Map</name>
   <description>
-        
+        Experimental handsfree map control for openstreetmap.org based maps.
     </description>
   <author email="peter.vojtek@gmail.com" href="http://todo">
       Peter Vojtek
