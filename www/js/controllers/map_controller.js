@@ -23,6 +23,34 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
         }
     });
 
+    var marker = null
+    var onPositionUpdated = function(position){
+      if(marker == null){
+        marker = L.circleMarker([position.coords.latitude, position.coords.longitude]);
+        leafletData.getMap().then(function(map) {
+          marker.addTo(map)
+          map.setView(marker.getLatLng())
+        });
+      }
+
+      marker.setLatLng([position.coords.latitude, position.coords.longitude])
+    }
+
+    var onPositionGatheringFailed = function(error){console.log('watchPosition error: '+error)}
+
+    var geoOptions = {
+      enableHighAccuracy: true, 
+      timeout           : 2000
+    };
+
+    var watchPositionID = navigator.geolocation.watchPosition(onPositionUpdated, onPositionGatheringFailed, geoOptions)
+
+    $scope.$on('$destroy',function(){
+      navigator.geolocation.clearWatch(watchPositionID)
+    });
+
+
+//////////////// touchless navigation  //////////////////////////////////////
     inZoomPosition = function(){
       return(x > -1.0 && x < 1.0 && y > -2.5 && y < 2.5)
     }
@@ -40,7 +68,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     inMovePosition = function(){
       var absX = Math.abs(x)
       var absY = Math.abs(y)
-      return (z < 12.8 && z > 6.0 && ( (absX > 3.0 && absX < 5.0) || (absY > 3.0 && absY < 5.0)  ))
+      return (z < 12.8 && z > 6.0 && ( (absX > 3.0 && absX < 6.0) || (absY > 3.0 && absY < 6.0)  ))
     }
 
     isMoveTime = function(){
