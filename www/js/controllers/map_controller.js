@@ -2,10 +2,11 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
   function ($scope, leafletData) {  
 
     angular.extend($scope, {
+        attribution: 'skap',
         center: {
           lat:  48.67587,
           lng: 19.05112,
-          zoom: 8
+          zoom: 12
         },
         layers: {
           baselayers: {
@@ -17,11 +18,18 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
             freemapHiking: {
               name: 'freemap.sk (Hiking)',
               url: 'http://{s}.freemap.sk/T/{z}/{x}/{y}.jpeg',
-              type: 'xyz'
+              type: 'xyz',
+              maxZoom: 16 // fixme: ignored by leaflet
             }
           },
         }
     });
+
+    leafletData.getMap().then(function(map) {
+      map.attributionControl.addAttribution("(c) openstreetmap.org contributors");
+    });
+
+//////  set your position marker and center map to it on application start
 
     var marker = null
     var onPositionUpdated = function(position){
@@ -51,9 +59,6 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
 
 //////////////// touchless navigation  //////////////////////////////////////
-    inZoomPosition = function(){
-      return(x > -1.0 && x < 1.0 && y > -2.5 && y < 2.5)
-    }
 
     var lastZoomChange = 0
     var lastMoveChange = 0
@@ -61,8 +66,17 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     var gy = 0
     var gz = 0
 
+    var preZoomInCounter = 0
+    var preZoomOutCounter = 0
+
+
+    inZoomPosition = function(){
+      return(gx > -1.0 && gx < 1.0 && gy > -2.5 && gy < 2.5)
+    }
+
     isZoomTime = function(){
-      return(Date.now() - lastZoomChange > 500)
+      var now = Date.now()
+      return((now - lastZoomChange > 700) && (now - lastMoveChange > 700))
     }
 
     inMovePosition = function(){
@@ -72,23 +86,25 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     }
 
     isMoveTime = function(){
-      return(Date.now() - lastMoveChange > 500)
+      var now = Date.now()
+      return((now - lastMoveChange > 300) && (now - lastZoomChange > 700))
     } 
 
-    function onSuccess(a) {
-      gx = a.x
-      gy = a.y
-      gz = a.z
+    function onAccelerationUpdated(acceleration) {
+      gx = acceleration.x
+      gy = acceleration.y
+      gz = acceleration.z
       $scope.$apply(function(){
         try{
             if( inZoomPosition() && isZoomTime() ){
-              if(gz > 12.8 && gy > 0){
+              if(gz > 12.3 && gy > 0.0){
+                preZoomInCounter = 0
                 lastZoomChange = Date.now()
                 leafletData.getMap().then(function(map) {
                   map.zoomIn()
                 })
                 
-              } else if(gz < 6.0 && gy < 0){
+              } else if(gz < 7.5 && gy < 0.0){
                 lastZoomChange = Date.now()
                 leafletData.getMap().then(function(map) {
                   map.zoomOut()
@@ -113,13 +129,13 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
       })
     };
 
-    function onError(e) {
+    function onAccelerationError(e) {
         alert('acceleration error '+e);
     };
 
     var options = { frequency: 50 }; 
 
     document.addEventListener("deviceready", function() {
-      var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+      var watchID = navigator.accelerometer.watchAcceleration(onAccelerationUpdated, onAccelerationError, options);
     }, false)
   }])
