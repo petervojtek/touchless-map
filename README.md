@@ -5,7 +5,7 @@ Use case: move and zoom map on your smartphone while wearing gloves.
 
 ## How to Install
 
-Get it from Google Play Store.
+Install it on Your Android device from Google Play Store.
 
 ## How to use it
 
@@ -30,7 +30,7 @@ Move the smartphone away from you and return back to starting position.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-out.gif"></img>
 
-### Return to Your Currrent Location and Reset Zoom
+### Return to Your Current Location and Reset Zoom
 
 Shake your smartphone.
 
@@ -40,11 +40,12 @@ Shake your smartphone.
 
 The app is experimental and I tested it only my android smartphone, but feel free to point out on bugs via new [Issue](https://github.com/petervojtek/touchless-map/issues).
 
-If the map is displayed but not moving when smartphone is tilted, restart the app (stop app in Android app manager and start it again).
+If the map is visible but not moving when smartphone is tilted, restart the app (stop app in Android app manager and start it again).
 
 ## How to Modify the Application and Contribute
 
-The smartphone app is written is [Ionic framework](ionicframework.com).
+The smartphone app is written is [Ionic framework](ionicframework.com) and can be compiled to run on many smartphone plaforms (iOS, MS, ..). I had the opportunity to test it only on Android, you are welcome to build it and try it on another platform.
+
 You will need to install  following [cordova](https://cordova.apache.org/) plugins into your ionic project:
 * cordova-plugin-device-motion
 * cordova-plugin-shake
