@@ -36,9 +36,7 @@ Shake your smartphone.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/shake.gif"></img>
 
-## Troubleshooting
-
-The app is experimental and I tested it only my android smartphone, but feel free to point out on bugs via new [Issue](https://github.com/petervojtek/touchless-map/issues).
+## Known Issues
 
 If the map is visible but not moving when smartphone is tilted, restart the app (stop app in Android app manager and start it again).
 
@@ -52,7 +50,9 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * cordova-plugin-geolocation
 * https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
 
-Feel free to propose new features or adjustments to the existing user interface via [Issues](https://github.com/petervojtek/touchless-map/issues). If you have some code adjustments to share, use pull request.
+Feel free to suggest bugs, new features or adjustments to the existing user interface via [Issues](https://github.com/petervojtek/touchless-map/issues).
+
+If you have some code adjustments to share, use pull request.
 
 ## License
 
