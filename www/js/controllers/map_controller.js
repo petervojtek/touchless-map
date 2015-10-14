@@ -2,7 +2,6 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
   function ($scope, leafletData) {  
 
     angular.extend($scope, {
-        attribution: 'skap',
         center: {
           lat:  48.67587,
           lng: 19.05112,
