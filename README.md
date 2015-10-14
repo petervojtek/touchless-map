@@ -30,13 +30,19 @@ Move the smartphone away from you and return back to starting position.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-out.gif"></img>
 
-### Return to Your Position
+### Return to Your Currrent Location and Reset Zoom
 
 Shake your smartphone.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/shake.gif"></img>
 
-## How to Modify the Application
+## Troubleshooting
+
+The app is experimental and I tested it only my android smartphone, but feel free to point out on bugs via new [Issue](https://github.com/petervojtek/touchless-map/issues).
+
+If the map is displayed but not moving when smartphone is tilted, restart the app (stop app in Android app manager and start it again).
+
+## How to Modify the Application and Contribute
 
 The smartphone app is written is [Ionic framework](ionicframework.com).
 You will need to install  following [cordova](https://cordova.apache.org/) plugins into your ionic project:
@@ -44,6 +50,8 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * cordova-plugin-shake
 * cordova-plugin-geolocation
 * https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
+
+Feel free to propose new features or adjustments to the existing user interface via [Issues](https://github.com/petervojtek/touchless-map/issues).
 
 ## License
 
