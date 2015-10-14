@@ -60,9 +60,9 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
 //////////////// touchless navigation  //////////////////////////////////////
 
-    var lastZoomInChange = 0
-    var lastZoomOutChange = 0
-    var lastMoveChange = 0
+    var lastZoomedInAt = 0
+    var lastZoomedOutAt = 0
+    var lastMovedAt = 0
     var gx = 0
     var gy = 0
     var gz = 0
@@ -75,22 +75,29 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     }
 
     inZoomPosition = function(){
-      return(gx > -1.0 && gx < 1.0 && gy > -2.5 && gy < 2.5 && avg(gzHistory) > 7)
+      var notUsingMoveX = gx > -1.0 && gx < 1.0
+      var notUsingMoveY = gy > -2.5 && gy < 2.5
+      var notReturningFromVerticalPosition = avg(gzHistory) > 7
+      return(notUsingMoveX && notUsingMoveY && notReturningFromVerticalPosition)
     }
 
     inZoomInAcceleration = function(){
-      return(avg(gzHistory.slice(0,11)) > 10.5 && avg(gzHistory.slice(11,20)) < 8.5)
+      var movingUpFirst = avg(gzHistory.slice(0,11)) > 10.5
+      var movingDownLater = avg(gzHistory.slice(11,20)) < 8.5
+      return(movingUpFirst && movingDownLater)
     }
 
     inZoomOutAcceleration = function(){
-      return(avg(gzHistory.slice(0,11)) < 8.5 && avg(gzHistory.slice(11,20)) > 10.5)
+      var movingDownFirst = avg(gzHistory.slice(0,11)) < 8.5
+      var movingUpLater = avg(gzHistory.slice(11,20)) > 10.5
+      return(movingDownFirst && movingUpLater)
     }
 
     isZoomTime = function(){
       var now = Date.now()
-      var z1 = (now - lastZoomOutChange > 600) && (now - lastZoomInChange > 2000)
-      var z2 = (now - lastZoomInChange > 600) && (now - lastZoomOutChange > 2000)
-      var m = now - lastMoveChange > 700
+      var z1 = (now - lastZoomedOutAt > 600) && (now - lastZoomedInAt > 2000)
+      var z2 = (now - lastZoomedInAt > 600) && (now - lastZoomedOutAt > 2000)
+      var m = now - lastMovedAt > 700
 
       return((z1 || z2) && m)
     }
@@ -103,7 +110,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
     isMoveTime = function(){
       var now = Date.now()
-      return((now - lastMoveChange > 300) && (now - lastZoomInChange > 700) && (now - lastZoomOutChange > 700))
+      return((now - lastMovedAt > 300) && (now - lastZoomedInAt > 700) && (now - lastZoomedOutAt > 700))
     } 
     function onAccelerationUpdated(acceleration) {
 
@@ -117,13 +124,13 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
         try{
             if( inZoomPosition() && isZoomTime() ){
               if(inZoomInAcceleration()){
-                lastZoomInChange = Date.now()
+                lastZoomedInAt = Date.now()
                 leafletData.getMap().then(function(map) {
                   map.zoomIn()
                 })
                 
               } else if(inZoomOutAcceleration() ){
-                lastZoomOutChange = Date.now()
+                lastZoomedOutAt = Date.now()
                 leafletData.getMap().then(function(map) {
                   map.zoomOut()
                 })             
@@ -131,7 +138,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
            } else if( inMovePosition() && isMoveTime() ){
 
-              lastMoveChange = Date.now()
+              lastMovedAt = Date.now()
               leafletData.getMap().then(function(map) {
                   try{
                     var xOffset = -20 * gx
