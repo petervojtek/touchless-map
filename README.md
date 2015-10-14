@@ -44,7 +44,7 @@ If the map is visible but not moving when smartphone is tilted, restart the app 
 
 Feel free to suggest bugs, new features or adjustments to the existing user interface via [Issues](https://github.com/petervojtek/touchless-map/issues).
 
-The smartphone app is written in [Ionic framework](ionicframework.com) and can be compiled to run on many smartphone plaforms (iOS, MS, ..). I had the opportunity to test it only on Android, you are welcome to build it and try it on another platform.
+The smartphone app is written in [Ionic framework](ionicframework.com) in HTML and JS and can be compiled to run on many smartphone plaforms (iOS, MS, ..). I had the opportunity to test it only on Android, you are welcome to build it and try it on another platform.
 
 You will need to install  following [cordova](https://cordova.apache.org/) plugins into your ionic project:
 * cordova-plugin-device-motion
@@ -53,6 +53,10 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
 
 If you have some code adjustments to share, use pull request.
+
+## Credits
+
+* Šaňo
 
 ## License
 
