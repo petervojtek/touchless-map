@@ -20,19 +20,19 @@ Tilt your smartphone to move map in X and Y axis.
 
 ### Zoom In
 
-Move the smartphone towards you and return back to starting position.
+Move the smartphone towards yourself and back to zoom in one level.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-in.gif"></img>
 
 ### Zoom Out
 
-Move the smartphone away from you and return back to starting position.
+Move the smartphone away from you and back to starting position to zoom out.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/zoom-out.gif"></img>
 
 ### Return to Your Current Location and Reset Zoom
 
-Shake your smartphone.
+Shake your smartphone to return to location provided by your phone and change zoom level to initial value.
 
 <img src="https://github.com/petervojtek/touchless-map/raw/master/videos/shake.gif"></img>
 
