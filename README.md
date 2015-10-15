@@ -50,7 +50,6 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * cordova-plugin-device-motion
 * cordova-plugin-shake
 * cordova-plugin-geolocation
-* https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
 
 If you have some code adjustments to share, use pull request.
 
