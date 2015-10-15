@@ -11,7 +11,7 @@ Install the app to your Android device from [Google Play Store](https://play.goo
 
 * When smartphone is in vertical (upright) position, touchless mode is disabled
 * Touchless mode is enabled when smartphone is in horizontal position
-* Application will automatically lock screen orientation into portrait mode
+* Application will automatically lock screen orientation into portrait mode (in upcoming release)
 
 ### Move Map
 
