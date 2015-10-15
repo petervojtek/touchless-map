@@ -9,8 +9,9 @@ Install the app to your Android device from [Google Play Store](https://play.goo
 
 ## Usage
 
-When smartphone is in vertical (upright) position, touchless mode is disabled.
-Touchless mode is enabled when smartphone is in horizontal position.
+* When smartphone is in vertical (upright) position, touchless mode is disabled
+* Touchless mode is enabled when smartphone is in horizontal position
+* Application will automatically lock screen orientation into portrait mode
 
 ### Move Map
 
@@ -50,6 +51,7 @@ You will need to install  following [cordova](https://cordova.apache.org/) plugi
 * cordova-plugin-device-motion
 * cordova-plugin-shake
 * cordova-plugin-geolocation
+* cordova-plugin-screen-orientation
 
 If you have some code adjustments to share, use pull request.
 
