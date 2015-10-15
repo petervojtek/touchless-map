@@ -62,6 +62,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     var lastZoomedInAt = 0
     var lastZoomedOutAt = 0
     var lastMovedAt = 0
+    var lastShakedAt = 0
     var gx = 0
     var gy = 0
     var gz = 0
@@ -97,8 +98,9 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
       var z1 = (now - lastZoomedOutAt > 600) && (now - lastZoomedInAt > 2000)
       var z2 = (now - lastZoomedInAt > 600) && (now - lastZoomedOutAt > 2000)
       var m = now - lastMovedAt > 700
+      var s =  now - lastShakedAt > 1000
 
-      return((z1 || z2) && m)
+      return((z1 || z2) && m && s)
     }
 
     inMovePosition = function(){
@@ -109,7 +111,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
     isMoveTime = function(){
       var now = Date.now()
-      return((now - lastMovedAt > 300) && (now - lastZoomedInAt > 700) && (now - lastZoomedOutAt > 700))
+      return((now - lastMovedAt > 300) && (now - lastZoomedInAt > 700) && (now - lastZoomedOutAt > 700) && (now - lastShakedAt > 1000))
     } 
     function onAccelerationUpdated(acceleration) {
 
@@ -161,6 +163,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 ///////////////////////
 
     var onShake = function () {
+        lastShakedAt = Date.now()
         leafletData.getMap().then(function(map) {
           map.setView(marker.getLatLng())
           map.setZoom(12)
