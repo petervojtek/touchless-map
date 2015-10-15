@@ -1,6 +1,6 @@
 {
   "name": "touchless-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Touchless Map - experimental handsfree map control for openstreetmap.org based maps",
   "dependencies": {
     "gulp": "^3.5.6",
