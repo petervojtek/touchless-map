@@ -12,8 +12,8 @@ touchlessApp.factory('persistentAppSettings', function($window) {
       return ($window.localStorage.getItem(key) == null);
   }
 
-  if(isUnset('sensitivity'))
-    set('sensitivity', 50)
+  if(isUnset('zoomSensitivity'))
+    set('zoomSensitivity', 50)
 
   if(isUnset('selectedMapTileIdentifier'))
     set('selectedMapTileIdentifier', 'openstreetmap')

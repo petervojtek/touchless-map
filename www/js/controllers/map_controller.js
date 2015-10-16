@@ -55,7 +55,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
     var gx = 0
     var gy = 0
     var gz = 0
-    var sensitivity = parseInt(persistentAppSettings.get('sensitivity')) / 100.0
+    var zoomSensitivity = parseInt(persistentAppSettings.get('zoomSensitivity')) / 100.0
 
     var gzHistory = [9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8]
 
@@ -72,14 +72,14 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
     }
 
     inZoomInAcceleration = function(){
-      var movingUpFirst = avg(gzHistory.slice(0,11)) > (11.5 - sensitivity*2)
-      var movingDownLater = avg(gzHistory.slice(11,20)) < (7.5 + sensitivity*2)
+      var movingUpFirst = avg(gzHistory.slice(0,11)) > (11.5 - zoomSensitivity*2)
+      var movingDownLater = avg(gzHistory.slice(11,20)) < (7.5 + zoomSensitivity*2)
       return(movingUpFirst && movingDownLater)
     }
 
     inZoomOutAcceleration = function(){
-      var movingDownFirst = avg(gzHistory.slice(0,11)) < (7.5 + sensitivity*2)
-      var movingUpLater = avg(gzHistory.slice(11,20)) > (11.5 - sensitivity*2)
+      var movingDownFirst = avg(gzHistory.slice(0,11)) < (7.5 + zoomSensitivity*2)
+      var movingUpLater = avg(gzHistory.slice(11,20)) > (11.5 - zoomSensitivity*2)
       return(movingDownFirst && movingUpLater)
     }
 
