@@ -1,0 +1,24 @@
+<ion-view title="Settings" >
+<ion-header-bar class="bar-balanced">
+  <h1 class="title" style="color: black"></span>SETTINGS</h1>
+</ion-header-bar>
+  <ion-content>
+  	<ion-list>
+		<ion-item class="item-divider">
+	        Zoom Sensitivity
+	    </ion-item>
+
+	    <ion-item class="range">
+	  		<i class="icon ion-ios-minus-outline"></i>
+	  		<input type="range" 
+	  		name="sensitivity" 
+	  		min="sensitivity.min"  
+	  		max="sensitivity.max" 
+	  		ng-model="sensitivity.value" 
+	  		on-release="onSensitivityChange()"
+	  		ng-click="onSensitivityChange()">
+	  		<i class="icon ion-android-add-circle"></i>
+		</ion-item>
+	</ion-list>
+  </ion-content>
+</ion-view>

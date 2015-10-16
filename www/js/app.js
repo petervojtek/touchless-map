@@ -3,7 +3,8 @@ touchlessApp = angular.module('touchlessApp', ['ionic', 'leaflet-directive'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     ionic.Platform.fullScreen()
-    screen.lockOrientation('portrait-primary')
+    if(screen && screen.lockOrientation)
+      screen.lockOrientation('portrait-primary')
   });
 
 })
@@ -14,7 +15,14 @@ touchlessApp = angular.module('touchlessApp', ['ionic', 'leaflet-directive'])
     .state('map', {
       url: "/map",
       controller: 'mapCtrl',
-      templateUrl: "templates/map.html"
+      templateUrl: "templates/map.html",
+      cache: false
+    })
+
+    .state('settings', {
+      url: "/settings",
+      controller: 'settingsCtrl',
+      templateUrl: "templates/settings.html"
     })
 
     $urlRouterProvider.otherwise('/map');

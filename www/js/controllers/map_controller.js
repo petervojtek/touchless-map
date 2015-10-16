@@ -1,5 +1,5 @@
-touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 
-  function ($scope, leafletData) {  
+touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSettings', '$location',
+  function ($scope, leafletData, persistentAppSettings, $location) { 
 
     angular.extend($scope, {
         center: {
@@ -26,7 +26,13 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
 
     leafletData.getMap().then(function(map) {
       map.attributionControl.addAttribution("(c) openstreetmap.org contributors");
+
+      L.easyButton('ion-settings', function(btn, map){
+        $location.path('settings')
+      }).addTo( map ); 
     });
+
+
 
 //////  set your position marker and center map to it on application start
 
@@ -66,6 +72,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     var gx = 0
     var gy = 0
     var gz = 0
+    var sensitivity = parseInt(persistentAppSettings.get('sensitivity')) / 100.0
 
     var gzHistory = [9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8]
 
@@ -82,14 +89,14 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData',
     }
 
     inZoomInAcceleration = function(){
-      var movingUpFirst = avg(gzHistory.slice(0,11)) > 10.5
-      var movingDownLater = avg(gzHistory.slice(11,20)) < 8.5
+      var movingUpFirst = avg(gzHistory.slice(0,11)) > (11.5 - sensitivity*2)
+      var movingDownLater = avg(gzHistory.slice(11,20)) < (7.5 + sensitivity*2)
       return(movingUpFirst && movingDownLater)
     }
 
     inZoomOutAcceleration = function(){
-      var movingDownFirst = avg(gzHistory.slice(0,11)) < 8.5
-      var movingUpLater = avg(gzHistory.slice(11,20)) > 10.5
+      var movingDownFirst = avg(gzHistory.slice(0,11)) < (7.5 + sensitivity*2)
+      var movingUpLater = avg(gzHistory.slice(11,20)) > (11.5 - sensitivity*2)
       return(movingDownFirst && movingUpLater)
     }
 
