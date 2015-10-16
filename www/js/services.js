@@ -42,7 +42,7 @@ touchlessApp.service('mapTileProvider', function() {
             name: 'OpenCycleMap',
             url: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
             options: {
-                attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }
         },
         mapbox_outdoors: {
@@ -51,7 +51,8 @@ touchlessApp.service('mapTileProvider', function() {
             type: 'xyz',
             options: {
                 apikey: 'pk.eyJ1IjoiYnVmYW51dm9scyIsImEiOiJLSURpX0pnIn0.2_9NrLz1U9bpwMQBhVk97Q',
-                mapid: 'bufanuvols.lia3no0m'
+                mapid: 'bufanuvols.lia3no0m',
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }
         },
         mapbox_wheat: {
@@ -60,7 +61,8 @@ touchlessApp.service('mapTileProvider', function() {
             type: 'xyz',
             options: {
                 apikey: 'pk.eyJ1IjoiYnVmYW51dm9scyIsImEiOiJLSURpX0pnIn0.2_9NrLz1U9bpwMQBhVk97Q',
-                mapid: 'bufanuvols.lia35jfp'
+                mapid: 'bufanuvols.lia35jfp',
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }
         },
         freemap_sk_hiking: {
