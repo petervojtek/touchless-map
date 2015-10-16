@@ -14,6 +14,16 @@ touchlessApp.controller('settingsCtrl', ['$scope', 'persistentAppSettings', 'map
     	persistentAppSettings.set('zoomSensitivity', $scope.zoomSensitivity.value) 
     }
 
+    $scope.moveSensitivity = {
+       value: persistentAppSettings.get('moveSensitivity'),
+       min: 0,
+       max: 100
+     };
+
+    $scope.onMoveSensitivityChange = function(){
+      persistentAppSettings.set('moveSensitivity', $scope.moveSensitivity.value) 
+    }
+
     $scope.mapTiles = Object.keys(mapTileProvider.tileList).map(function(tileIdentifier){
       return({name: mapTileProvider.tileList[tileIdentifier]['name'], identifier: tileIdentifier})
 

@@ -55,7 +55,8 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
     var gx = 0
     var gy = 0
     var gz = 0
-    var zoomSensitivity = parseInt(persistentAppSettings.get('zoomSensitivity')) / 100.0
+    var zoomSensitivity = parseInt(persistentAppSettings.get('zoomSensitivity')) / 100.0 // 0.0 = min, 1.0 = max
+    var moveSensitivity = parseInt(persistentAppSettings.get('moveSensitivity')) / 100.0
 
     var gzHistory = [9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8]
 
@@ -132,8 +133,8 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
               lastMovedAt = Date.now()
               leafletData.getMap().then(function(map) {
                   try{
-                    var xOffset = -20 * gx
-                    var yOffset = 20 * gy
+                    var xOffset = (-35 * moveSensitivity + 5) * gx
+                    var yOffset = (35 * moveSensitivity + 5) * gy
 
                     map.panBy(new L.Point(xOffset, yOffset), {animate: true})
                   } catch(e){alert(e)}

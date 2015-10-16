@@ -24,6 +24,22 @@
 		</ion-item>
 
 		<ion-item class="item-divider">
+	        <b>Move Sensitivity</b>
+	    </ion-item>
+
+	    <ion-item class="range">
+	  		<i class="icon ion-ios-minus-outline"></i>
+	  		<input type="range" 
+	  		name="moveSensitivity" 
+	  		min="moveSensitivity.min"  
+	  		max="moveSensitivity.max" 
+	  		ng-model="moveSensitivity.value" 
+	  		on-release="onMoveSensitivityChange()"
+	  		ng-click="onMoveSensitivityChange()">
+	  		<i class="icon ion-android-add-circle"></i>
+		</ion-item>
+
+		<ion-item class="item-divider">
 	        <b>Map Tile Provider</b>
 	    </ion-item>
 
