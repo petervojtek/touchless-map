@@ -1,5 +1,9 @@
-touchlessApp.controller('settingsCtrl', ['$scope', 'persistentAppSettings', 'mapTileProvider',
-  function ($scope, persistentAppSettings, mapTileProvider) {  
+touchlessApp.controller('settingsCtrl', ['$scope', 'persistentAppSettings', 'mapTileProvider', '$location',
+  function ($scope, persistentAppSettings, mapTileProvider, $location) {  
+    $scope.goBackToMap = function(){
+      $location.path('map')
+    }
+
     $scope.sensitivity = {
        value: persistentAppSettings.get('sensitivity'),
        min: 0,
