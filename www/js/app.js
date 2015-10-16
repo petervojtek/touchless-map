@@ -15,8 +15,7 @@ touchlessApp = angular.module('touchlessApp', ['ionic', 'leaflet-directive'])
     .state('map', {
       url: "/map",
       controller: 'mapCtrl',
-      templateUrl: "templates/map.html",
-      cache: false
+      templateUrl: "templates/map.html"
     })
 
     .state('settings', {

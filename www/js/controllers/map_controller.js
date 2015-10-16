@@ -17,6 +17,15 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
       }).addTo( map ); 
     });
 
+    // this view is cached and following callback allows us to expire variables after being edited in settings
+    $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      if ($location.path() == "/map") {
+          $scope.tiles = mapTileProvider.tileList[persistentAppSettings.get('selectedMapTileIdentifier')]
+          zoomSensitivity = parseInt(persistentAppSettings.get('zoomSensitivity')) / 100.0 // 0.0 = min, 1.0 = max
+          moveSensitivity = parseInt(persistentAppSettings.get('moveSensitivity')) / 100.0
+        }
+    })
+
 //////  set your position marker and center map to it on application start
 
     var marker = null
@@ -55,8 +64,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
     var gx = 0
     var gy = 0
     var gz = 0
-    var zoomSensitivity = parseInt(persistentAppSettings.get('zoomSensitivity')) / 100.0 // 0.0 = min, 1.0 = max
-    var moveSensitivity = parseInt(persistentAppSettings.get('moveSensitivity')) / 100.0
+    var zoomSensitivity, moveSensitivity // updated in stateChangeSuccess callback to be properly expired when edited in settingss
 
     var gzHistory = [9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8]
 
