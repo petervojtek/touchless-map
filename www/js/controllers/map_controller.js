@@ -1,5 +1,5 @@
-touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSettings', '$location',
-  function ($scope, leafletData, persistentAppSettings, $location) { 
+touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSettings', '$location', 'mapTileProvider',
+  function ($scope, leafletData, persistentAppSettings, $location, mapTileProvider) { 
 
     angular.extend($scope, {
         center: {
@@ -7,32 +7,15 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
           lng: 19.05112,
           zoom: 12
         },
-        layers: {
-          baselayers: {
-            osm: {
-              name: 'OpenStreetMap',
-              type: 'xyz',
-              url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-            },
-            freemapHiking: {
-              name: 'freemap.sk (Hiking)',
-              url: 'http://{s}.freemap.sk/T/{z}/{x}/{y}.jpeg',
-              type: 'xyz',
-              maxZoom: 16 // fixme: ignored by leaflet
-            }
-          },
-        }
+
+        tiles: mapTileProvider.tileList[persistentAppSettings.get('selectedMapTileIdentifier')]
     });
 
     leafletData.getMap().then(function(map) {
-      map.attributionControl.addAttribution("(c) openstreetmap.org contributors");
-
       L.easyButton('ion-settings', function(btn, map){
         $location.path('settings')
       }).addTo( map ); 
     });
-
-
 
 //////  set your position marker and center map to it on application start
 

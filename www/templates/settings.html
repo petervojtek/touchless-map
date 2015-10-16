@@ -5,7 +5,7 @@
   <ion-content>
   	<ion-list>
 		<ion-item class="item-divider">
-	        Zoom Sensitivity
+	        <b>Zoom Sensitivity</b>
 	    </ion-item>
 
 	    <ion-item class="range">
@@ -19,6 +19,19 @@
 	  		ng-click="onSensitivityChange()">
 	  		<i class="icon ion-android-add-circle"></i>
 		</ion-item>
+
+		<ion-item class="item-divider">
+	        <b>Map Tile Provider</b>
+	    </ion-item>
+
+		<div class="list">
+	        <ion-radio ng-repeat="tile in mapTiles" 
+	        	ng-value="tile.identifier" 
+             	ng-model="presetTile.identifier" 
+             	ng-change="onMaptileSelected(tile)"> 
+             	{{ tile.name }}
+            </ion-radio>
+        </div>
 	</ion-list>
   </ion-content>
 </ion-view>
