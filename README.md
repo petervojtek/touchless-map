@@ -10,7 +10,7 @@ Use case: move and zoom map on your smartphone while wearing gloves.
 
 ## Usage
 
-* When smartphone is in vertical (upright) position, touchless mode is disabled
+* Touchless mode is disabled when smartphone is in vertical (upright) position
 * Touchless mode is enabled when smartphone is in horizontal position
 * Application will automatically lock screen orientation into portrait mode
 
