@@ -3,9 +3,10 @@
 Experimental smartphone app for touchless map control employing smartphone's accelerometer.
 Use case: move and zoom map on your smartphone while wearing gloves.
 
-## How to Install
-
-Install the app to your Android device from [Google Play Store](https://play.google.com/store/apps/details?id=com.ionicframework.myapp418130).
+<a href="https://play.google.com/store/apps/details?id=com.ionicframework.myapp418130">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
 
 ## Usage
 
