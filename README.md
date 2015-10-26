@@ -3,15 +3,16 @@
 Experimental smartphone app for touchless map control employing smartphone's accelerometer.
 Use case: move and zoom map on your smartphone while wearing gloves.
 
-## How to Install
-
-Install the app to your Android device from [Google Play Store](https://play.google.com/store/apps/details?id=com.ionicframework.myapp418130).
+<a href="https://play.google.com/store/apps/details?id=com.ionicframework.myapp418130">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
 
 ## Usage
 
-* When smartphone is in vertical (upright) position, touchless mode is disabled
+* Touchless mode is disabled when smartphone is in vertical (upright) position
 * Touchless mode is enabled when smartphone is in horizontal position
-* Application will automatically lock screen orientation into portrait mode (in upcoming release)
+* Application will automatically lock screen orientation into portrait mode
 
 ### Move Map
 
@@ -57,7 +58,7 @@ If you have some code adjustments to share, use pull request.
 
 ## Credits
 
-* Šaňo
+* [Šaňo](https://www.openstreetmap.org/user/laznik/)
 * Icons in logo provided by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> are licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
 
 ## License
