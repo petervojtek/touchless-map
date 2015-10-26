@@ -8,6 +8,8 @@ Use case: move and zoom map on your smartphone while wearing gloves.
        src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
 </a>
 
+or [download the latest apk from here](https://github.com/petervojtek/touchless-map/tree/master/releases).
+
 ## Usage
 
 * Touchless mode is disabled when smartphone is in vertical (upright) position
