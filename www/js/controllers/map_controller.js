@@ -66,7 +66,7 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
     var gz = 0
     var zoomSensitivity, moveSensitivity // updated in stateChangeSuccess callback to be properly expired when edited in settingss
 
-    var gzHistory = [9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8]
+    var gzHistory = [9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8, 9.8]
 
     var avg = function(arr){
       var sum = arr.reduce(function(a, b) { return a + b; });
@@ -80,19 +80,16 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
       return(notUsingMoveX && notUsingMoveY && notReturningFromVerticalPosition)
     }
 
-
-
     inZoomInAcceleration = function(){
-
-
-      return(false)
-      //var movingUpFirst = avg(gzHistory.slice(0,11)) > (11.5 - zoomSensitivity*2)
-      //var movingDownLater = avg(gzHistory.slice(11,20)) < (7.5 + zoomSensitivity*2)
-      //return(movingUpFirst && movingDownLater)
+      var movingUpFirst = avg(gzHistory.slice(0,11)) > (11.5 - zoomSensitivity*2)
+      var movingDownLater = avg(gzHistory.slice(11,20)) < (7.5 + zoomSensitivity*2)
+      return(movingUpFirst && movingDownLater)
     }
 
     inZoomOutAcceleration = function(){
-      return(false)
+      var movingDownFirst = avg(gzHistory.slice(0,11)) < (7.5 + zoomSensitivity*2)
+      var movingUpLater = avg(gzHistory.slice(11,20)) > (11.5 - zoomSensitivity*2)
+      return(movingDownFirst && movingUpLater)
     }
 
     isZoomTime = function(){
@@ -115,9 +112,6 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
       var now = Date.now()
       return((now - lastMovedAt > 300) && (now - lastZoomedInAt > 700) && (now - lastZoomedOutAt > 700) && (now - lastShakedAt > 1000))
     } 
-
-    $scope.zSpeed = 0
-
     function onAccelerationUpdated(acceleration) {
 
       gx = acceleration.x
@@ -127,15 +121,6 @@ touchlessApp.controller('mapCtrl', ['$scope', 'leafletData', 'persistentAppSetti
       gzHistory.shift()
 
       $scope.$apply(function(){
-
-        var zs = 0
-        for(i = 0; i< gzHistory.length; i++){
-          zs += gzHistory[i] - 9.5
-        }
-
-        $scope.zSpeed = Math.round(zs*1000)/1000.0
-
-
         try{
             if( inZoomPosition() && isZoomTime() ){
               if(inZoomInAcceleration()){
